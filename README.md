@@ -35,9 +35,9 @@ SYSTEM:
 
 Features: 
 
-Gathers logs and packs into tarbal. 
-Sends tarbal to a mailbox
-adds a date, time, hostname stamp to the top of each output 
+* Gathers logs and packs into tarbal. 
+* Sends tarbal to a mailbox
+* adds a date, time, hostname stamp to the top of each output 
 
 
 
