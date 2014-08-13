@@ -26,7 +26,19 @@ Compute:
 SYSTEM:
 
 * messages 
+* hostname
 * services status
 * physical disk status 
 * Physical disk smart status 
 * Physical disk serial numbers 
+
+
+Features: 
+
+Gathers logs and packs into tarbal. 
+Sends tarbal to a mailbox
+adds a date, time, hostname stamp to the top of each output 
+
+
+
+
