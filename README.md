@@ -27,4 +27,6 @@ SYSTEM:
 
 * messages 
 * services status
-
+* physical disk status 
+* Physical disk smart status 
+* Physical disk serial numbers 
