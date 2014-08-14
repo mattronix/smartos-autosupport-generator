@@ -2,7 +2,10 @@
 
 #load commands and veriables for the correct unix/linux version.
 source config-debian
-
+#run Pre command.
+echo "Running Pre command."
+$PRE
+echo "Pre command finished."
 #output time and date to console. 
 
 echo "-------------------------------------"
@@ -62,5 +65,17 @@ done
 # package the autosupport.
 tar cvzf ~/$HOSTNAME.$DATE.autosupport.tar.gz -C $TEMP $ASUPDIR
 
+#Run Post/
+echo "Running Post Command"
+$POST
+echo "Post Command Ran"
 
+
+echo "-------------------------------------"
+echo "HOSTNAME: $HOSTNAME"
+echo "TIME:`date`"
+echo  Finished building of autosupport.
+echo "-------------------------------------"
+
+exit
 
