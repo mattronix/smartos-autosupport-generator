@@ -1,17 +1,7 @@
 #!/bin/bash
 
-# define veriables. 
-
-TEMP=`mktemp -d` 
-HOSTNAME='' # Not done yet.
-DATE=`date '+%m-%d-%Y.%H:%M:%S'` 		
-TIME=`date`
-ASUPDIR="autosupport-$DATE"
-
-#arrays 
-COMMANDLIST=("df")
-COPYLIST=("/etc/hostname")
-
+#load commands and veriables for the correct unix/linux version.
+source config-debian
 
 #output time and date to console. 
 

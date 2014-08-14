@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#Create a brandnew temp dir. 
+TEMP=`mktemp -d`
+
+#create the TEMP/autosupport-date folder. 
+ASUPDIR="autosupport-$DATE"
+
+# Read the hostname and use it in the header and autosupport name. 
+HOSTNAME=''
+
+#date is for file name and Time is put into the header of every output file.
+DATE=`date '+%m-%d-%Y.%H:%M:%S'`
+TIME=`date`
+
+#List of commands and files to gather.
+COMMANDLIST=("df")
+COPYLIST=("/etc/hostname")
+
