@@ -9,7 +9,7 @@ TIME=`date`
 
 
 #arrays 
-SHOPPINGLIST=("df")
+COMMANDLIST=("df")
 COPYLIST=("/etc/hostname")
 
 
@@ -28,7 +28,7 @@ echo  "DATE: $TIME" >> $TEMP/$ASUPDIR/autosupport.txt
 
 # Run every item in the list SHOPPINGLIST and output it to a file with its name and inside the file make the first two lines the date and time. 
 
-for i in "${SHOPPINGLIST[@]}"; do 
+for i in "${COMMANDLIST[@]}"; do 
 LOGFILE=$TEMP/$ASUPDIR/"$i.txt" 
   echo "Collecting" $i; 
 
