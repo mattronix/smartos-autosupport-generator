@@ -35,7 +35,7 @@ for i in "${SHOPPINGLIST[@]}"; do
   DATE: $DATE
   TIME: $TIME 
   
-  EOF
+EOF
 
   echo >> $TEMP/autosupport/"$i.txt"
   echo >> $TEMP/autosupport/"$i.txt"
