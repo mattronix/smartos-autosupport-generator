@@ -8,7 +8,7 @@ TEMP=`mktemp -d`
 
 #run Pre command.
 echo "Running Pre command."
-$PRE
+eval $PRE
 echo "Pre command finished."
 #output time and date to console. 
 
@@ -71,7 +71,7 @@ tar cvzf ~/$HOSTNAME.$DATE.autosupport.tar.gz -C $TEMP $ASUPDIR
 
 #Run Post/
 echo "Running Post Command"
-$POST
+eval $POST
 echo "Post Command Ran"
 
 
