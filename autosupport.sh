@@ -6,7 +6,7 @@ TEMP=`mktemp -d`
 HOSTNAME='' # Not done yet.
 DATE=`date '+%m-%d-%Y.%H:%M:%S'` 		
 TIME=`date`
-
+ASUPDIR=`echo autosupport-$DATE`
 
 #arrays 
 COMMANDLIST=("df")
@@ -14,12 +14,14 @@ COPYLIST=("/etc/hostname")
 
 
 #output time and date to console. 
-echo DATE: $DATE 
-echo TIME: $TIME
 
+echo "-------------------------------------"
+echo Starting building of autosupport.
+echo TIME: $TIME
+echo "-------------------------------------"
 # Create a temp work dir. 
-mkdir $TEMP/autosupport 
-ASUPDIR=autosupport
+
+mkdir $TEMP/$ASUPDIR
 # make sure temp work dir is cleaned up after exit status. 
 trap "{ rm -rf $TEMP; }" EXIT 
 
@@ -29,29 +31,27 @@ echo  "DATE: $TIME" >> $TEMP/$ASUPDIR/autosupport.txt
 # Run every item in the list SHOPPINGLIST and output it to a file with its name and inside the file make the first two lines the date and time. 
 
 for i in "${COMMANDLIST[@]}"; do 
-LOGFILE=$TEMP/$ASUPDIR/"$i.txt" 
+  LOGFILE=$TEMP/$ASUPDIR/"$i.txt" 
   echo "Collecting" $i; 
 
-exec 6>&1           # Link file descriptor #6 with stdout.
+  exec 6>&1           # Link file descriptor #6 with stdout.
                     # Saves stdout.
 
-exec > $LOGFILE     # stdout replaced with file "logfile.txt".
+  exec > $LOGFILE     # stdout replaced with file "logfile.txt".
 
-# ----------------------------------------------------------- #
-# All output from commands in this block sent to file $LOGFILE.
+  # ----------------------------------------------------------- #
+  # All output from commands in this block sent to file $LOGFILE.
 
-echo "-------------------------------------"
-echo "Generated on" $TIME
-echo "Output of" $i "command"
-echo "-------------------------------------"
-echo
-$i 
+  echo "-------------------------------------"
+  echo "Generated on" $TIME
+  echo "Output of" $i "command"
+  echo "-------------------------------------"
+  echo
+  $i 
 
-# ----------------------------------------------------------- #
+  # ----------------------------------------------------------- #
 
-exec 1>&6 6>&-      # Restore stdout and close file descriptor #6.
-
-
+  exec 1>&6 6>&-      # Restore stdout and close file descriptor #6.
 done
 
 
