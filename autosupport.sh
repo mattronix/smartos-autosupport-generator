@@ -35,7 +35,7 @@ for i in "${COMMANDLIST[@]}"; do
   echo "Collecting" $i; 
 
   exec 6>&1           # Link file descriptor #6 with stdout.
-                    # Saves stdout.
+                      # Saves stdout.
 
   exec > $LOGFILE     # stdout replaced with file "logfile.txt".
 
