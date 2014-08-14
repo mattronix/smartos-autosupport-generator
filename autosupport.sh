@@ -21,14 +21,19 @@ echo  "DATE: `date`" >> $TEMP/$ASUPDIR/autosupport.txt
 
 # Run every item in the list SHOPPINGLIST and output it to a file with its name and inside the file make the first two lines the date and time. 
 
+
 for i in "${COMMANDLIST[@]}"; do 
-  LOGFILE=$TEMP/$ASUPDIR/"$i.txt" 
+
+# Location of all command outputs.
+LOGFILE=$TEMP/$ASUPDIR/"$i.txt"
+
+
   echo "Collecting" $i; 
 
   exec 6>&1           # Link file descriptor #6 with stdout.
                       # Saves stdout.
 
-  exec > $LOGFILE     # stdout replaced with file "logfile.txt".
+  exec > "$LOGFILE"     # stdout replaced with file "logfile.txt".
 
   # ----------------------------------------------------------- #
   # All output from commands in this block sent to file $LOGFILE.
@@ -39,11 +44,12 @@ for i in "${COMMANDLIST[@]}"; do
   echo "Output of" $i "command"
   echo "-------------------------------------"
   echo
-  $i 
-
+  $i
   # ----------------------------------------------------------- #
 
   exec 1>&6 6>&-      # Restore stdout and close file descriptor #6.
+
+
 done
 
 

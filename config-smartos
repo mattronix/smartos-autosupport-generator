@@ -16,5 +16,5 @@ echo $ASUPDIR
 
 #List of commands and files to gather.
 COMMANDLIST=("df -h" "zpool status" "zfs list -t snapshot" "ifconfig" "vmadm list")
-COPYLIST=("/usbkey/config")
+COPYLIST=("/usbkey/config" "/etc/network/interfaces" "/var/log/dmesg" "/var/log/messages")
 
