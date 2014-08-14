@@ -6,7 +6,7 @@ TEMP=`mktemp -d`
 HOSTNAME='' # Not done yet.
 DATE=`date '+%m-%d-%Y.%H:%M:%S'` 		
 TIME=`date`
-ASUPDIR=`echo autosupport-$DATE`
+ASUPDIR="autosupport-$DATE"
 
 #arrays 
 COMMANDLIST=("df")
