@@ -3,13 +3,14 @@
 # define veriables. 
 
 TEMP=`mktemp -d` 
-HOSTNAME='' #
-DATE=`date '+%m-%d-%Y'` 		
-TIME=`date '+%H:%M:%S'`
+HOSTNAME='' # Not done yet.
+DATE=`date '+%m-%d-%Y.%H:%M:%S'` 		
+TIME=`date`
+
 
 #arrays 
-SHOPPINGLIST=("vmadm list" "zfs list -t snapshot" "zpool status" "df -h" "svcs -a" )
-COPYLIST=("/usbkey/config")
+SHOPPINGLIST=("df")
+COPYLIST=("/etc/hostname")
 
 
 #output time and date to console. 
@@ -23,23 +24,34 @@ mkdir $TEMP/autosupport
 trap "{ rm -rf $TEMP; }" EXIT 
 
 #time stamp autosupport.
-echo  DATE: $DATE >> $TEMP/autosupport/autosupport.txt
-echo TIME $TIME >> $TEMP/autosupport/autosupport.txt
+echo  "DATE: $TIME" >> $TEMP/autosupport/autosupport.txt
 
 # Run every item in the list SHOPPINGLIST and output it to a file with its name and inside the file make the first two lines the date and time. 
 
 for i in "${SHOPPINGLIST[@]}"; do 
+LOGFILE=$TEMP/autosupport/"$i.txt" 
   echo "Collecting" $i; 
-  tee $i.txt << EOF
-  collecting $i
-  DATE: $DATE
-  TIME: $TIME 
-  
-EOF
 
-  echo >> $TEMP/autosupport/"$i.txt"
-  echo >> $TEMP/autosupport/"$i.txt"
-  $i 2>&1 >>  $TEMP/autosupport/"$i.txt" 
+exec 6>&1           # Link file descriptor #6 with stdout.
+                    # Saves stdout.
+
+exec > $LOGFILE     # stdout replaced with file "logfile.txt".
+
+# ----------------------------------------------------------- #
+# All output from commands in this block sent to file $LOGFILE.
+
+echo "-------------------------------------"
+echo "Generated on" $TIME
+echo "Output of" $i "command"
+echo "-------------------------------------"
+echo
+$i 
+
+# ----------------------------------------------------------- #
+
+exec 1>&6 6>&-      # Restore stdout and close file descriptor #6.
+
+
 done
 
 
@@ -50,7 +62,7 @@ done
 
 
 # package the autosupport.
-tar cvzf ~/$DATE.$TIME.autosupport.tar.gz -C $TEMP autosupport
+tar cvzf ~/$DATE.autosupport.tar.gz -C $TEMP autosupport
 
 
 
