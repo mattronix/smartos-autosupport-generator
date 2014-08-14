@@ -6,11 +6,8 @@ DATE=`date '+%m-%d-%Y.%H:%M:%S'`
 #Create a brandnew temp dir. 
 TEMP=`mktemp -d`
 
-# Read the hostname and use it in the header and autosupport name. 
-HOSTNAME=''
-
 #create the TEMP/autosupport-date folder. 
-ASUPDIR="autosupport-$DATE"
+ASUPDIR="$HOSTNAME-$DATE-autosupport"
 echo $ASUPDIR 
 
 

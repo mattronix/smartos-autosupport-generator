@@ -6,8 +6,9 @@ source config-debian
 #output time and date to console. 
 
 echo "-------------------------------------"
+echo "HOSTNAME: $HOSTNAME"
+echo "TIME:`date`"
 echo Starting building of autosupport.
-echo " TIME:`date`"
 echo "-------------------------------------"
 # Create a temp work dir. 
 
@@ -33,6 +34,7 @@ for i in "${COMMANDLIST[@]}"; do
   # All output from commands in this block sent to file $LOGFILE.
 
   echo "-------------------------------------"
+  echo "Hostname: $HOSTNAME"
   echo "Generated on" `date`
   echo "Output of" $i "command"
   echo "-------------------------------------"
@@ -52,7 +54,7 @@ done
 
 
 # package the autosupport.
-tar cvzf ~/$DATE.autosupport.tar.gz -C $TEMP $ASUPDIR
+tar cvzf ~/$HOSTNAME.$DATE.autosupport.tar.gz -C $TEMP $ASUPDIR
 
 
 
