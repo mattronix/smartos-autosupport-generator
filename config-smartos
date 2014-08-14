@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#date is for file name and Time is put into the header of every output file.
+DATE=`date '+%m-%d-%Y.%H:%M:%S'`
+TIME=`date`
+
+#Create a brandnew temp dir. 
+TEMP=`mktemp -d`
+
+# Read the hostname and use it in the header and autosupport name. 
+HOSTNAME=''
+
+#create the TEMP/autosupport-date folder. 
+ASUPDIR="autosupport-$DATE"
+echo $ASUPDIR 
+
+
+#List of commands and files to gather.
+COMMANDLIST=("df -h" "zpool status" "zfs list -t snapshot" "ifconfig" "vmadm list")
+COPYLIST=("/usbkey/config")
+
