@@ -2,6 +2,10 @@
 
 #load commands and veriables for the correct unix/linux version.
 source config-debian
+
+# Create a brandnew temp dir.
+TEMP=`mktemp -d`
+
 #run Pre command.
 echo "Running Pre command."
 $PRE
