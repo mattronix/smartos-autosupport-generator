@@ -19,17 +19,17 @@ echo TIME: $TIME
 
 # Create a temp work dir. 
 mkdir $TEMP/autosupport 
-
+ASUPDIR=autosupport
 # make sure temp work dir is cleaned up after exit status. 
 trap "{ rm -rf $TEMP; }" EXIT 
 
 #time stamp autosupport.
-echo  "DATE: $TIME" >> $TEMP/autosupport/autosupport.txt
+echo  "DATE: $TIME" >> $TEMP/$ASUPDIR/autosupport.txt
 
 # Run every item in the list SHOPPINGLIST and output it to a file with its name and inside the file make the first two lines the date and time. 
 
 for i in "${SHOPPINGLIST[@]}"; do 
-LOGFILE=$TEMP/autosupport/"$i.txt" 
+LOGFILE=$TEMP/$ASUPDIR/"$i.txt" 
   echo "Collecting" $i; 
 
 exec 6>&1           # Link file descriptor #6 with stdout.
@@ -57,12 +57,12 @@ done
 
 for i in "${COPYLIST[@]}"; do 
   echo "Copying" $i; 
-  cp $i $TEMP/autosupport/
+  cp $i $TEMP/$ASUPDIR/
 done
 
 
 # package the autosupport.
-tar cvzf ~/$DATE.autosupport.tar.gz -C $TEMP autosupport
+tar cvzf ~/$DATE.autosupport.tar.gz -C $TEMP $ASUPDIR
 
 
 
