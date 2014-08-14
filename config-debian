@@ -12,8 +12,8 @@ echo $ASUPDIR
 
 
 # List of commands and files to gather.
-COMMANDLIST=("dmesg -T")
-COPYLIST=("/etc/hostname") 
+COMMANDLIST=("dmesg -T" "df" "df -h")
+COPYLIST=("/etc/hostname" "/etc/network/interfaces" "/etc/resolv.conf") 
 
 
 echo $COMMANDLIST
