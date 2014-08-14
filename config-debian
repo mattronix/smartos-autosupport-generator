@@ -1,8 +1,7 @@
 #!/bin/bash
 
-#date is for file name and Time is put into the header of every output file.
+#date is for file name and autosupport name.
 DATE=`date '+%m-%d-%Y.%H:%M:%S'`
-TIME=`date`
 
 #Create a brandnew temp dir. 
 TEMP=`mktemp -d`
