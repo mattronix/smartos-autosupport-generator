@@ -74,9 +74,9 @@ done
 tar cvzf $TAR -C $TEMP $ASUPDIR
 
 #Run Post/
-echo "Running Post Command"
-curl --form "file=@$TAR" localhost:5000
-echo "Post Command Ran"
+echo "Uploading Autosupport"
+curl --form "file=@$TAR" -o output  localhost:5000
+echo "Upload Complete"
 
 
 echo "-------------------------------------"
