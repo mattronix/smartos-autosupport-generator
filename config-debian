@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# date is for file name and autosupport name.
-DATE=`date '+%m-%d-%Y.%H:%M:%S'`
-
-# create the TEMP/autosupport-date folder. 
-ASUPDIR="$HOSTNAME-$DATE-autosupport"
-echo $ASUPDIR 
 
 
 # List of commands and files to gather.
@@ -19,4 +13,3 @@ POST=""
 
 
 
-echo $COMMANDLIST
