@@ -1,10 +1,16 @@
 #!/bin/bash
 
 #load commands and veriables for the correct unix/linux version.
-source config-debian
+source $1
 
+# create the TEMP/autosupport-date folder. 
+# date is for file name and autosupport name.
+DATE=`date '+%m-%d-%Y-%H-%M-%S'`
 # Create a brandnew temp dir.
 TEMP=`mktemp -d`
+# create the TEMP/autosupport-date folder. 
+ASUPDIR="$HOSTNAME-$DATE-autosupport"
+
 
 #run Pre command.
 echo "Running Pre command."
@@ -67,7 +73,7 @@ done
 
 
 # package the autosupport.
-tar cvzf ~/$HOSTNAME.$DATE.autosupport.tar.gz -C $TEMP $ASUPDIR
+tar cvzf ~/$HOSTNAME-$DATE-autosupport.tar.gz -C $TEMP $ASUPDIR
 
 #Run Post/
 echo "Running Post Command"
