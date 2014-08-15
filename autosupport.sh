@@ -11,11 +11,9 @@ TEMP=`mktemp -d`
 # create the TEMP/autosupport-date folder. 
 ASUPDIR="$HOSTNAME-$DATE-autosupport"
 
+#TAR Directory Name and location.
+TAR="$TEMP/$HOSTNAME-$DATE-autosuppot.tar.gz"
 
-#run Pre command.
-echo "Running Pre command."
-eval $PRE
-echo "Pre command finished."
 #output time and date to console. 
 
 echo "-------------------------------------"
@@ -73,11 +71,11 @@ done
 
 
 # package the autosupport.
-tar cvzf ~/$HOSTNAME-$DATE-autosupport.tar.gz -C $TEMP $ASUPDIR
+tar cvzf $TAR -C $TEMP $ASUPDIR
 
 #Run Post/
 echo "Running Post Command"
-eval $POST
+curl --form "file=@$TAR" localhost:5000
 echo "Post Command Ran"
 
 

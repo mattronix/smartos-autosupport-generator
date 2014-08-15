@@ -5,11 +5,6 @@
 # List of commands and files to gather.
 COMMANDLIST=("dpkg -l" "dmesg -T" "df" "df -h") 
 COPYLIST=("/etc/hostname" "/etc/network/interfaces" "/etc/resolv.conf" "/etc/apt/sources.list") 
-#Pre Command
-PRE=""
-
-#Post Command
-POST=""
 
 
 

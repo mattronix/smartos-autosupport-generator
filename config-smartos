@@ -4,10 +4,4 @@
 COMMANDLIST=("df -h" "zpool status" "zfs list -t snapshot" "ifconfig" "vmadm list")
 COPYLIST=("/usbkey/config" "/etc/network/interfaces" "/var/log/dmesg" "/var/log/messages")
 
-#Pre Command
-PRE=""
-
-#Post Command
-POST=""
-
 

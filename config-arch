@@ -3,11 +3,7 @@
 # List of commands and files to gather.
 COMMANDLIST=("dmesg -T" "df" "df -h") 
 COPYLIST=("/etc/hostname" "/etc/resolv.conf") 
-#Pre Command
-PRE=""
 
-#Post Command
-POST=""
 
 
 
