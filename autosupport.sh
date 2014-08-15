@@ -17,6 +17,7 @@ TAR="$TEMP/$HOSTNAME-$DATE-autosuppot.tar.gz"
 #output time and date to console. 
 
 echo "-------------------------------------"
+echo "//\\//\\ATTRONIX -ASUP Tool"
 echo "HOSTNAME: $HOSTNAME"
 echo "TIME:`date`"
 echo Starting building of autosupport.
@@ -50,6 +51,7 @@ LOGFILE=$TEMP/$ASUPDIR/"$i.txt"
   # All output from commands in this block sent to file $LOGFILE.
 
   echo "-------------------------------------"
+  echo "//\\//\\ATTRONIX -ASUP Tool"
   echo "Hostname: $HOSTNAME"
   echo "Generated on" `date`
   echo "Output of" $i "command"
@@ -73,13 +75,12 @@ done
 # package the autosupport.
 tar cvzf $TAR -C $TEMP $ASUPDIR
 
-#Run Post/
-echo "Uploading Autosupport"
+#Run upload/
 curl --form "file=@$TAR" -o output  localhost:5000
-echo "Upload Complete"
 
 
 echo "-------------------------------------"
+echo "//\\//\\ATTRONIX -ASUP Tool"
 echo "HOSTNAME: $HOSTNAME"
 echo "TIME:`date`"
 echo  Finished building of autosupport.
