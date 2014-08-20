@@ -2,7 +2,7 @@
 
 #load commands and veriables for the correct unix/linux version.
 source $1
-HOSTNAME=TEST
+HOSTNAME=SERVER1
 # create the TEMP/autosupport-date folder. 
 # date is for file name and autosupport name.
 DATE=`date '+%m-%d-%Y-%H-%M-%S'`
@@ -76,7 +76,7 @@ done
 tar cvzf $TAR -C $TEMP $ASUPDIR
 
 #Run upload/
-curl --form "file=@$TAR" -o output  localhost:5000/
+curl --form "file=@$TAR" -o output  localhost:5000/$HOSTNAME/
 
 
 echo "-------------------------------------"
